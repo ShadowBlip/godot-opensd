@@ -22,4 +22,4 @@ plugins:
   # Publish artifacts as a GitHub release
   - - "@semantic-release/github"
     - assets:
-      - path: dist/godot-pty.tar.gz
+      - path: dist/godot-opensd.tar.gz
