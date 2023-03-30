@@ -1,0 +1,25 @@
+# Semantic Release Configuration
+# https://semantic-release.gitbook.io/semantic-release/usage/configuration
+
+# Any merges into branches that match these patterns will trigger a release.
+branches:
+  - name: main
+
+# These plugins will run when a release is triggered. They will analyze commit 
+# messages to determine what kind of release this is and publish a new release.
+plugins:
+  # Analyze commit messages to determine next version
+  - "@semantic-release/commit-analyzer"
+
+  # Generate release notes
+  - "@semantic-release/release-notes-generator"
+
+  # Execute commands to build the project
+  - - "@semantic-release/exec"
+    - shell: true
+      prepareCmd: "make in-docker TARGET=dist"
+
+  # Publish artifacts as a GitHub release
+  - - "@semantic-release/github"
+    - assets:
+      - path: dist/godot-pty.tar.gz
