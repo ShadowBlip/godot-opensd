@@ -16,5 +16,6 @@ RUN apt-get update && apt-get install -y \
   libudev-dev \
   libxi-dev \
   libxrandr-dev \
-  binutils
+  binutils \
+  git
 
