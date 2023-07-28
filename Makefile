@@ -7,7 +7,9 @@ RELEASE_TARGET := addons/$(EXT_NAME)/bin/lib$(EXT_NAME).linux.template_release.x
 DEBUG_TARGET := addons/$(EXT_NAME)/bin/lib$(EXT_NAME).linux.template_debug.x86_64.so
 
 # Docker image variables
-IMAGE_NAME ?= ghcr.io/shadowblip/opengamepadui-builder
+#IMAGE_NAME ?= ghcr.io/shadowblip/opengamepadui-builder
+#IMAGE_TAG ?= latest
+IMAGE_NAME ?= opensd-builder
 IMAGE_TAG ?= latest
 
 ##@ General
@@ -84,6 +86,7 @@ sem-release: ## Publish a release with semantic release
 .PHONY: in-docker
 in-docker:
 	@# Run the given make target inside Docker
+	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
 	docker run --rm \
 		-v $(PWD):/src \
 		--workdir /src \
@@ -91,5 +94,3 @@ in-docker:
 		--user $(shell id -u):$(shell id -g) \
 		$(IMAGE_NAME):$(IMAGE_TAG) \
 		make $(TARGET)
-
-

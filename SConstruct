@@ -7,7 +7,7 @@ ext_name = "opensd"
 env = SConscript("godot-cpp/SConstruct")
 env['CXXFLAGS'].remove('-std=c++17')
 env.Append(CXXFLAGS=["-std=c++20"])
-env.Append(LINKFLAGS=["-static-libstdc++"])
+#env.Append(LINKFLAGS=["-static-libstdc++"])
 
 # For the reference:
 # - CCFLAGS are compilation flags shared between C and C++
